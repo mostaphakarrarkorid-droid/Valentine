@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💖</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Comic Sans MS','Poppins',cursive;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ===== SCREENS ===== */
+.screen {
+  display: none;
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 40px;
+  text-align: center;
+  width: 520px;
+  max-width: 95vw;
+  box-shadow: 0 0 30px rgba(255,0,100,0.3);
+}
+
+.screen.active {
+  display: block;
+}
+
+h1 {
+  color: #ff2e63;
+  margin-bottom: 25px;
+}
+
+/* ===== GIF ===== */
+.gif {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 20px;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+}
+
+.gif img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* ===== BUTTONS ===== */
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#yesBtn {
+  background: #ff2e63;
+  color: white;
+}
+
+#noBtn {
+  background: #ffe4e9;
+  color: #ff2e63;
+  position: relative;
+}
+
+/* ===== EAT ===== */
+.eat-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.small {
+  width: 150px;
+  height: 150px;
+}
+
+.or {
+  font-weight: bold;
+  color: #ff2e63;
+}
+
+.or-me {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.or-me img {
+  width: 40px;
+  border-radius: 10px;
+}
+
+/* ===== ACTIVITIES ===== */
+.activities {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px 40px;
+  justify-items: center;
+}
+
+.activity {
+  text-align: center;
+  cursor: pointer;
+}
+
+.activity img {
+  width: 130px;
+  height: 130px;
+  border-radius: 18px;
+}
+
+.activity p {
+  margin-top: 8px;
+  color: #ff2e63;
+}
+
+/* ===== EXPLOSION ===== */
+@keyframes explode {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+/* ===== FULLSCREEN GIF ===== */
+.fullscreen {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,154,158,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.fullscreen img {
+  width: 85vw;
+  max-height: 90vh;
+  border-radius: 30px;
+}
+
+/* ===== SLIDER ===== */
+.slider-container {
+  margin-top: 30px;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 18px;
+  border-radius: 20px;
+  background: linear-gradient(
+    to right,
+    #ffd1dc,
+    #ff9a9e,
+    #ff6f61,
+    #ff2e63,
+    #b0003a
+  );
+}
+
+.value {
+  margin-top: 15px;
+  font-size: 22px;
+  color: #ff2e63;
+}
+
+.next-btn {
+  margin-top: 25px;
+  padding: 12px 30px;
+  background: #ff2e63;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SCREEN 1 -->
+<div class="screen active" id="s1">
+  <h1>Would you like<br>to be my Valentine? 💖</h1>
+  <div class="gif"><img src="minon.webp"></div>
+  <div class="buttons">
+    <button id="yesBtn">YES 💘</button>
+    <button id="noBtn">NO 😢</button>
+  </div>
+</div>
+
+<!-- SCREEN 2 -->
+<div class="screen" id="s2">
+  <h1>Yaaay 💕</h1>
+  <div class="gif" id="toEat">
+    <img src="yyyess-yes.gif">
+  </div>
+</div>
+
+<!-- SCREEN 3 -->
+<div class="screen" id="s3">
+  <h1>What should we eat ?</h1>
+  <div class="eat-row">
+    <div class="gif small eat"><img src="vibes-rainy.gif"></div>
+    <div class="or">OR</div>
+    <div class="gif small eat"><img src="mukbang-food.gif"></div>
+  </div>
+
+  <!-- OR ME (SPECIAL PATH) -->
+  <div class="or-me" id="orMe">
+    <img src="stitch-licks.gif"><br>or Me ?
+  </div>
+</div>
+
+<!-- SCREEN 4 -->
+<div class="screen" id="s4">
+  <h1>What should we do ?</h1>
+  <div class="activities">
+    <div class="activity"><img src="bowling.webp"><p>Bowling</p></div>
+    <div class="activity"><img src="concert.webp"><p>Concert</p></div>
+    <div class="activity"><img src="hiking.webp"><p>Hiking</p></div>
+    <div class="activity"><img src="movie.webp"><p>Movie</p></div>
+    <div class="activity"><img src="museum.webp"><p>Museum</p></div>
+    <div class="activity"><img src="have fun.gif"><p>Have Fun</p></div>
+  </div>
+</div>
+
+<!-- SCREEN 5 -->
+<div class="screen" id="s5">
+  <h1>Level of Excitement 🔥</h1>
+  <div class="slider-container">
+    <input type="range" min="0" max="100" value="50" id="slider">
+    <div class="value" id="value">50%</div>
+    <div class="next-btn" id="nextBtn">Next 💖</div>
+  </div>
+</div>
+
+<script>
+const screens = document.querySelectorAll(".screen");
+const show = id => {
+  screens.forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+};
+
+/* YES / NO */
+yesBtn.onclick = () => show("s2");
+
+let noScale = 1;
+noBtn.onclick = () => {
+  noScale -= 0.1;
+  if (noScale < 0.4) noScale = 0.4;
+  const x = Math.random()*200 - 100;
+  const y = Math.random()*200 - 100;
+  noBtn.style.transform = `translate(${x}px, ${y}px) scale(${noScale})`;
+};
+
+/* Navigation */
+toEat.onclick = () => show("s3");
+
+/* Eat options → activities */
+document.querySelectorAll(".eat").forEach(e =>
+  e.onclick = () => show("s4")
+);
+
+/* OR ME → special gif */
+orMe.onclick = () => {
+  const f = document.createElement("div");
+  f.className = "fullscreen";
+  f.innerHTML = `<img src="aaron-warner-not-my-edit.webp">`;
+  f.onclick = () => f.remove();
+  document.body.appendChild(f);
+};
+
+/* Activities */
+document.querySelectorAll(".activity img").forEach(img => {
+  img.onclick = () => {
+    img.style.animation = "explode 0.5s forwards";
+    document.querySelectorAll(".activity").forEach(a => {
+      if (!a.contains(img)) a.style.display = "none";
+    });
+
+    setTimeout(() => {
+      const f = document.createElement("div");
+      f.className = "fullscreen";
+      f.innerHTML = `<img src="just-follow-my-lead-johnny.gif">`;
+      f.onclick = () => {
+        f.remove();
+        show("s5");
+      };
+      document.body.appendChild(f);
+    }, 500);
+  };
+});
+
+/* Slider */
+slider.oninput = () => value.textContent = slider.value + "%";
+
+/* Final */
+nextBtn.onclick = () => {
+  const f = document.createElement("div");
+  f.className = "fullscreen";
+  f.innerHTML = `<img src="haru-yoshida-tonari-no-kaibutsu-kun.gif">`;
+  document.body.appendChild(f);
+};
+</script>
+
+</body>
+</html>
